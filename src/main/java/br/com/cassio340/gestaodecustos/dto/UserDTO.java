@@ -10,11 +10,11 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class UserDto {
+public class UserDTO {
     private Long id;
     private String name;
 
-    public UserDto (User user){
+    public UserDTO(User user){
         id = user.getId();
         name = user.getName();
     }
