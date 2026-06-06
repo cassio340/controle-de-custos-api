@@ -26,6 +26,10 @@ public class Expense implements Serializable {
     private String name;
     private BigDecimal amount;
 
+    @ManyToOne
+    @JoinColumn (name = "user_id")
+    private User user;
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;

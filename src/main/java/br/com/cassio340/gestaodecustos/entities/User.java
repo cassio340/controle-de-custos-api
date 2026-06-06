@@ -5,6 +5,8 @@ import lombok.*;
 
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 
@@ -25,6 +27,8 @@ public class User implements Serializable {
     private String email;
     private String password;
 
+    @OneToMany(mappedBy = "user")
+    private List <Expense> expenses = new ArrayList<>();
 
     @Override
     public boolean equals(Object o) {
