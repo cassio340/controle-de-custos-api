@@ -1,8 +1,6 @@
 package br.com.cassio340.gestaodecustos.dto;
 
 import br.com.cassio340.gestaodecustos.entities.Expense;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,7 +12,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @Getter
 @Setter
-public class ExpenseDTO {
+public class ExpenseResponse {
     private Long id;
     private String name;
     private BigDecimal amount;
@@ -22,7 +20,7 @@ public class ExpenseDTO {
 
 
 
-    public ExpenseDTO(Expense expense){
+    public ExpenseResponse(Expense expense){
         id = expense.getId();
         name = expense.getName();
         amount = expense.getAmount();

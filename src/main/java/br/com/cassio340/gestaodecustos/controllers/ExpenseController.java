@@ -1,6 +1,6 @@
 package br.com.cassio340.gestaodecustos.controllers;
 
-import br.com.cassio340.gestaodecustos.dto.ExpenseDTO;
+import br.com.cassio340.gestaodecustos.dto.ExpenseResponse;
 import br.com.cassio340.gestaodecustos.services.ExpenseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,8 +17,8 @@ public class ExpenseController {
     private ExpenseService service;
 
     @GetMapping
-    public ResponseEntity <List<ExpenseDTO>> findALL (){
-        List <ExpenseDTO> list = service.findAll();
+    public ResponseEntity <List<ExpenseResponse>> findALL (){
+        List <ExpenseResponse> list = service.findAll();
         return ResponseEntity.ok().body(list);
     }
 }

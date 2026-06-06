@@ -2,7 +2,6 @@ package br.com.cassio340.gestaodecustos.dto;
 
 import br.com.cassio340.gestaodecustos.entities.Expense;
 import br.com.cassio340.gestaodecustos.entities.User;
-import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,16 +14,11 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-public class UserDTO {
+public class UserResponse {
     private Long id;
     private String name;
 
-    private List<ExpenseDTO> expenses = new ArrayList<>();
-    public UserDTO(User user){
-        id = user.getId();
-        name = user.getName();
-        for (Expense expense : user.getExpenses()){
-            expenses.add(new ExpenseDTO(expense));
-        }
-    }
+    private List<ExpenseResponse> expenses = new ArrayList<>();
+
+
 }

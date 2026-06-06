@@ -30,6 +30,12 @@ public class User implements Serializable {
     @OneToMany(mappedBy = "user")
     private List <Expense> expenses = new ArrayList<>();
 
+    public User(String name, String email, String password) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
