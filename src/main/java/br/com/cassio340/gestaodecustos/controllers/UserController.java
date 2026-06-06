@@ -1,5 +1,6 @@
 package br.com.cassio340.gestaodecustos.controllers;
 
+import br.com.cassio340.gestaodecustos.dto.UserRequest;
 import br.com.cassio340.gestaodecustos.dto.UserResponse;
 import br.com.cassio340.gestaodecustos.entities.User;
 import br.com.cassio340.gestaodecustos.services.UserService;
@@ -29,4 +30,13 @@ public class UserController {
     }
 
 
+    @PostMapping
+    public ResponseEntity<UserResponse> insert (@RequestBody UserRequest userRequest){
+        UserResponse response = service.insert(userRequest);
+
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().
+                path("/{id}").buildAndExpand(response.getId()).toUri();
+        return ResponseEntity.created(uri).body(response);
+
+    }
 }

@@ -1,12 +1,15 @@
 package br.com.cassio340.gestaodecustos.services;
 
+import br.com.cassio340.gestaodecustos.dto.UserRequest;
 import br.com.cassio340.gestaodecustos.dto.UserResponse;
 import br.com.cassio340.gestaodecustos.dto.mapper.UserMapper;
 import br.com.cassio340.gestaodecustos.entities.User;
 import br.com.cassio340.gestaodecustos.respositorys.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @Service
@@ -23,6 +26,13 @@ public class UserService {
 
     public UserResponse findById(Long id){
         return mapper.toResponse(repository.findById(id).get());
+    }
+
+    public UserResponse insert (UserRequest userRequest){
+
+
+        User user = repository.save(mapper.UserRequest(userRequest));
+        return  mapper.toResponse(user);
     }
 
 }
