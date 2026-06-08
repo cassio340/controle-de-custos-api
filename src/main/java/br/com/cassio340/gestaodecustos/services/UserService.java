@@ -41,5 +41,9 @@ public class UserService {
         return mapper.toResponse(user);
 
     }
+    public void delete (Long id){
+        repository.deleteById(id);
+
+    }
 
 }
