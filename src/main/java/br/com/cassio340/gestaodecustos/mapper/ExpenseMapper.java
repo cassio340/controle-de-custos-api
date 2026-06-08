@@ -1,4 +1,4 @@
-package br.com.cassio340.gestaodecustos.dto.mapper;
+package br.com.cassio340.gestaodecustos.mapper;
 
 import br.com.cassio340.gestaodecustos.dto.ExpenseRequest;
 import br.com.cassio340.gestaodecustos.dto.ExpenseResponse;

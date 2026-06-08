@@ -3,11 +3,12 @@ package br.com.cassio340.gestaodecustos.services;
 import br.com.cassio340.gestaodecustos.dto.ExpenseRequest;
 import br.com.cassio340.gestaodecustos.dto.ExpenseResponse;
 
-import br.com.cassio340.gestaodecustos.dto.mapper.ExpenseMapper;
+import br.com.cassio340.gestaodecustos.exceptions.custom.ResourceNotFoundException;
+import br.com.cassio340.gestaodecustos.mapper.ExpenseMapper;
 import br.com.cassio340.gestaodecustos.entities.Expense;
 import br.com.cassio340.gestaodecustos.entities.User;
-import br.com.cassio340.gestaodecustos.respositorys.ExpenseRepository;
-import br.com.cassio340.gestaodecustos.respositorys.UserRepository;
+import br.com.cassio340.gestaodecustos.respositories.ExpenseRepository;
+import br.com.cassio340.gestaodecustos.respositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,12 +38,14 @@ public class ExpenseService {
         return mapper.toResponse(expense);
     }
     public ExpenseResponse update (Long id, ExpenseRequest expenseRequest){
-        Expense expense = repository.findById(id).get();
+        Expense expense = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id));
+
         mapper.updateExpense(expense,expenseRequest);
         repository.save(expense);
         return mapper.toResponse(expense);
     }
     public void delete (Long id){
+        repository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id));
         repository.deleteById(id);
     }
 }

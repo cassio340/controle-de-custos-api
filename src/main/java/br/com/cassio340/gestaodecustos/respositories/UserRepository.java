@@ -1,4 +1,4 @@
-package br.com.cassio340.gestaodecustos.respositorys;
+package br.com.cassio340.gestaodecustos.respositories;
 
 import br.com.cassio340.gestaodecustos.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
