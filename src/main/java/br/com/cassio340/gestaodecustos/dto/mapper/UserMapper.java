@@ -6,7 +6,6 @@ import br.com.cassio340.gestaodecustos.dto.UserResponse;
 import br.com.cassio340.gestaodecustos.entities.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -18,10 +17,10 @@ public class UserMapper {
 
     public UserResponse toResponse (User user){
         List<ExpenseResponse>  list = user.getExpenses().
-                stream().map(e-> expenseMapper.toDto(e)).toList();
+                stream().map(e-> expenseMapper.toResponse(e)).toList();
         return new UserResponse(user.getId(), user.getName(),list);
     }
-    public User UserRequest (UserRequest userRequest){
+    public User toEntity(UserRequest userRequest){
         return new User (userRequest.getName(),userRequest.getEmail(), userRequest.getPassword());
 
     }

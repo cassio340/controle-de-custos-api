@@ -30,6 +30,12 @@ public class Expense implements Serializable {
     @JoinColumn (name = "user_id")
     private User user;
 
+    public Expense(String name, BigDecimal amount, User user) {
+        this.name = name;
+        this.amount = amount;
+        this.user = user;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
