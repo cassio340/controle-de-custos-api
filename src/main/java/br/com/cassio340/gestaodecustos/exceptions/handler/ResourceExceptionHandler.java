@@ -6,6 +6,8 @@ import br.com.cassio340.gestaodecustos.exceptions.response.StandardError;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.HttpMediaTypeNotSupportedException;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
@@ -42,6 +44,17 @@ public class ResourceExceptionHandler {
         String err = "Data base error";
         HttpStatus status = HttpStatus.BAD_REQUEST;
         StandardError standardError = new StandardError(Instant.now(),status.value(),err,e.getMessage(), request.getRequestURI());
+        return ResponseEntity.status(status).body(standardError);
+    }
+    @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
+    public ResponseEntity<StandardError> httpRequestMethodNotSupported (HttpRequestMethodNotSupportedException e ,
+                                                                        HttpServletRequest request){
+        String err = "Method not allowed";
+        String message = "Method '" + e.getMethod() + "' is not supported for this endpoint";
+        HttpStatus status = HttpStatus.METHOD_NOT_ALLOWED;
+
+
+        StandardError standardError = new StandardError(Instant.now(),status.value(),err,message, request.getRequestURI());
         return ResponseEntity.status(status).body(standardError);
     }
 
