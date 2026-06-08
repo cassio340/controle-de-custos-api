@@ -1,5 +1,6 @@
 package br.com.cassio340.gestaodecustos.entities;
 
+import br.com.cassio340.gestaodecustos.entities.enums.Category;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,15 +26,17 @@ public class Expense implements Serializable {
 
     private String name;
     private BigDecimal amount;
-
+    private Category category;
     @ManyToOne
     @JoinColumn (name = "user_id")
     private User user;
 
-    public Expense(String name, BigDecimal amount, User user) {
+    public Expense(String name, BigDecimal amount, Category category, User user) {
         this.name = name;
         this.amount = amount;
+        this.category = category;
         this.user = user;
+
     }
 
     @Override

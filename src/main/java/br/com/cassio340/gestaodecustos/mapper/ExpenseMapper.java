@@ -10,17 +10,18 @@ import org.springframework.stereotype.Component;
 @Component
 public class ExpenseMapper {
     public  ExpenseResponse toResponse (Expense expense){
-        return  new ExpenseResponse(expense.getId(), expense.getName(), expense.getAmount());
+        return  new ExpenseResponse(expense.getId(), expense.getName(), expense.getAmount(),expense.getCategory());
     }
 
     public Expense toEntity(ExpenseRequest expenseRequest, User user){
         return new Expense( expenseRequest.getName(),
-                expenseRequest.getAmount(), user);
+                expenseRequest.getAmount(), expenseRequest.getCategory(), user);
     }
 
     public void updateExpense (Expense expense,ExpenseRequest expenseRequest){
         expense.setName(expenseRequest.getName());
         expense.setAmount(expenseRequest.getAmount());
+        expense.setCategory(expenseRequest.getCategory());
 
 
     }
