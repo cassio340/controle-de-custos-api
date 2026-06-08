@@ -1,5 +1,6 @@
 package br.com.cassio340.gestaodecustos.exceptions.handler;
 
+import br.com.cassio340.gestaodecustos.exceptions.custom.DataBaseException;
 import br.com.cassio340.gestaodecustos.exceptions.custom.ResourceNotFoundException;
 import br.com.cassio340.gestaodecustos.exceptions.response.StandardError;
 import jakarta.servlet.http.HttpServletRequest;
@@ -7,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 import java.time.Instant;
 
@@ -22,4 +24,25 @@ public class ResourceExceptionHandler {
         return  ResponseEntity.status(status).body(standardError);
 
     }
+
+    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
+    public ResponseEntity<StandardError> methodArgumentTypeMismatch (MethodArgumentTypeMismatchException e ,
+                                                                     HttpServletRequest request){
+        String err = "Bad Request";
+        String message = "Invalid parameter +" + e.getName();
+        HttpStatus status = HttpStatus.BAD_REQUEST;
+
+        StandardError standardError = new StandardError(Instant.now(),status.value(),
+                err,message, request.getRequestURI());
+
+        return ResponseEntity.status(status).body(standardError);
+    }
+    @ExceptionHandler (DataBaseException.class)
+    public ResponseEntity<StandardError> dataBaseException (DataBaseException e,HttpServletRequest request){
+        String err = "Data base error";
+        HttpStatus status = HttpStatus.BAD_REQUEST;
+        StandardError standardError = new StandardError(Instant.now(),status.value(),err,e.getMessage(), request.getRequestURI());
+        return ResponseEntity.status(status).body(standardError);
+    }
+
 }

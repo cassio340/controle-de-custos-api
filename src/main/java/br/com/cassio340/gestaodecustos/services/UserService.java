@@ -2,11 +2,13 @@ package br.com.cassio340.gestaodecustos.services;
 
 import br.com.cassio340.gestaodecustos.dto.UserRequest;
 import br.com.cassio340.gestaodecustos.dto.UserResponse;
+import br.com.cassio340.gestaodecustos.exceptions.custom.DataBaseException;
 import br.com.cassio340.gestaodecustos.exceptions.custom.ResourceNotFoundException;
 import br.com.cassio340.gestaodecustos.mapper.UserMapper;
 import br.com.cassio340.gestaodecustos.entities.User;
 import br.com.cassio340.gestaodecustos.respositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -50,7 +52,12 @@ public class UserService {
 
     public void delete (Long id){
         repository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id));
-        repository.deleteById(id);
+        try {
+            repository.deleteById(id);
+        }
+        catch (DataIntegrityViolationException e){
+            throw new DataBaseException("Cannot delete user because it has related expenses ");
+        }
 
     }
 
