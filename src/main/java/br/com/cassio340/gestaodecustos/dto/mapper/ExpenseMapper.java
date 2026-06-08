@@ -2,6 +2,7 @@ package br.com.cassio340.gestaodecustos.dto.mapper;
 
 import br.com.cassio340.gestaodecustos.dto.ExpenseRequest;
 import br.com.cassio340.gestaodecustos.dto.ExpenseResponse;
+import br.com.cassio340.gestaodecustos.dto.UserRequest;
 import br.com.cassio340.gestaodecustos.entities.Expense;
 import br.com.cassio340.gestaodecustos.entities.User;
 import org.springframework.stereotype.Component;
@@ -16,4 +17,12 @@ public class ExpenseMapper {
         return new Expense( expenseRequest.getName(),
                 expenseRequest.getAmount(), user);
     }
+
+    public void updateExpense (Expense expense,ExpenseRequest expenseRequest){
+        expense.setName(expenseRequest.getName());
+        expense.setAmount(expenseRequest.getAmount());
+
+
+    }
+
 }

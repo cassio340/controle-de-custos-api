@@ -36,4 +36,10 @@ public class ExpenseService {
         repository.save(expense);
         return mapper.toResponse(expense);
     }
+    public ExpenseResponse update (Long id, ExpenseRequest expenseRequest){
+        Expense expense = repository.findById(id).get();
+        mapper.updateExpense(expense,expenseRequest);
+        repository.save(expense);
+        return mapper.toResponse(expense);
+    }
 }
