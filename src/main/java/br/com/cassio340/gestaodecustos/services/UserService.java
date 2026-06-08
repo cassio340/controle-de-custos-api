@@ -29,10 +29,17 @@ public class UserService {
     }
 
     public UserResponse insert (UserRequest userRequest){
-
-
         User user = repository.save(mapper.UserRequest(userRequest));
+
         return  mapper.toResponse(user);
+    }
+    public UserResponse update (Long id, UserRequest userRequest){
+        User user = repository.findById(id).get();
+        mapper.updateUser(user,userRequest);
+
+        repository.save(user);
+        return mapper.toResponse(user);
+
     }
 
 }

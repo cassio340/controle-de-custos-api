@@ -25,4 +25,10 @@ public class UserMapper {
         return new User (userRequest.getName(),userRequest.getEmail(), userRequest.getPassword());
 
     }
+    public void updateUser (User user, UserRequest userRequest){
+        user.setName(userRequest.getName());
+        user.setEmail(userRequest.getEmail());
+        user.setPassword(userRequest.getPassword());
+
+    }
 }
