@@ -42,4 +42,7 @@ public class ExpenseService {
         repository.save(expense);
         return mapper.toResponse(expense);
     }
+    public void delete (Long id){
+        repository.deleteById(id);
+    }
 }
