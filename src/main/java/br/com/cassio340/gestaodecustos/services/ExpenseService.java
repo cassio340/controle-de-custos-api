@@ -4,6 +4,7 @@ import br.com.cassio340.gestaodecustos.dto.ExpenseRequest;
 import br.com.cassio340.gestaodecustos.dto.ExpenseResponse;
 
 import br.com.cassio340.gestaodecustos.entities.Merchant;
+import br.com.cassio340.gestaodecustos.exceptions.custom.BadRequestException;
 import br.com.cassio340.gestaodecustos.exceptions.custom.ResourceNotFoundException;
 import br.com.cassio340.gestaodecustos.mapper.ExpenseMapper;
 import br.com.cassio340.gestaodecustos.entities.Expense;
@@ -35,6 +36,12 @@ public class ExpenseService {
 
 
     public ExpenseResponse insert (ExpenseRequest expenseRequest){
+        if (expenseRequest.getUserId() == null){
+            throw new BadRequestException("userId is required");
+        }
+        if (expenseRequest.getMerchantId() == null){
+            throw new BadRequestException("merchantId is required");
+        }
         User user = userRepository.findById(expenseRequest.getUserId()).orElseThrow(
                 ()-> new ResourceNotFoundException(expenseRequest.getUserId()));
 
@@ -43,7 +50,10 @@ public class ExpenseService {
 
         Expense expense = mapper.toEntity(expenseRequest,user,merchant);
 
+
         repository.save(expense);
+
+
         return mapper.toResponse(expense);
     }
     public ExpenseResponse update (Long id, ExpenseRequest expenseRequest){

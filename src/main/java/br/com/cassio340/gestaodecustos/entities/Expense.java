@@ -27,10 +27,11 @@ public class Expense implements Serializable {
     private String name;
     private BigDecimal amount;
 
+
     @Enumerated(EnumType.STRING)
     private Category category;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "merchant_id")
     private Merchant merchant;
 

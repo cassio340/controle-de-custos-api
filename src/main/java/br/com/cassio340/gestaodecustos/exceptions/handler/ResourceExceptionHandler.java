@@ -1,5 +1,6 @@
 package br.com.cassio340.gestaodecustos.exceptions.handler;
 
+import br.com.cassio340.gestaodecustos.exceptions.custom.BadRequestException;
 import br.com.cassio340.gestaodecustos.exceptions.custom.DataBaseException;
 import br.com.cassio340.gestaodecustos.exceptions.custom.ResourceNotFoundException;
 import br.com.cassio340.gestaodecustos.exceptions.response.StandardError;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
+import javax.management.BadAttributeValueExpException;
 import java.time.Instant;
 
 @ControllerAdvice
@@ -55,6 +57,14 @@ public class ResourceExceptionHandler {
 
 
         StandardError standardError = new StandardError(Instant.now(),status.value(),err,message, request.getRequestURI());
+        return ResponseEntity.status(status).body(standardError);
+    }
+
+    @ExceptionHandler(BadRequestException.class)
+    public ResponseEntity<StandardError> badRequest (BadRequestException e , HttpServletRequest request){
+        String err = "Bad Request";
+        HttpStatus status =HttpStatus.BAD_REQUEST;
+        StandardError standardError = new StandardError(Instant.now(),status.value(),err,e.getMessage(),request.getRequestURI());
         return ResponseEntity.status(status).body(standardError);
     }
 

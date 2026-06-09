@@ -7,6 +7,7 @@ import br.com.cassio340.gestaodecustos.entities.Merchant;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 
 
 @Component
@@ -20,7 +21,7 @@ public class MerchantMapper {
         return new MerchantResponse(merchant.getId(), merchant.getName());
     }
     public Merchant toEntity (MerchantRequest request){
-        return new Merchant(null,request.getName(),null);
+        return new Merchant(null,request.getName(),new ArrayList<>());
     }
     public void update (Merchant merchant, MerchantRequest request){
         merchant.setName(request.getName());

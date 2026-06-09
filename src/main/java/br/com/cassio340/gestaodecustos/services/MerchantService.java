@@ -49,10 +49,10 @@ public class MerchantService {
             repository.flush();
         }
         catch (DataIntegrityViolationException e) {
-            throw new DataBaseException("Cannot delete user because it has related expenses");
+            throw new DataBaseException("Cannot delete merchant because it has related expenses");
         }
         catch (InvalidDataAccessApiUsageException e) {
-            throw new DataBaseException("Cannot delete user because it has related expenses");
+            throw new DataBaseException("Cannot delete merchant because it has related expenses");
         }
     }
 }

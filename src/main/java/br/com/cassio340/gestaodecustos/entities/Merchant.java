@@ -8,6 +8,8 @@ import lombok.Setter;
 
 import java.io.Serializable;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -24,8 +26,9 @@ public class Merchant implements Serializable {
     private Long id;
     private String name;
 
-    @OneToOne(mappedBy = "merchant")
-    private Expense expense;
+    @OneToMany(mappedBy = "merchant")
+    private List<Expense> expenses = new ArrayList<>();
+
 
     @Override
     public boolean equals(Object o) {
