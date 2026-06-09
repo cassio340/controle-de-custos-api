@@ -22,6 +22,12 @@ public class MerchantController {
         List<MerchantResponse> responses = service.findAll();
         return ResponseEntity.ok().body(responses);
     }
+    @GetMapping("/{id}")
+    public ResponseEntity<MerchantResponse> findById (@PathVariable Long id){
+        MerchantResponse response = service.findById(id);
+        return ResponseEntity.ok().body(response);
+    }
+
     @PostMapping
     public ResponseEntity<MerchantResponse> insert(@RequestBody MerchantRequest request){
         MerchantResponse response = service.insert(request);

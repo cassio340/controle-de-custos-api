@@ -29,6 +29,10 @@ public class MerchantService {
         return repository.findAll().stream().map(e->mapper.toResponse(e)).toList();
     }
 
+    public MerchantResponse findById (Long id){
+        Merchant merchant = repository.findById(id).orElseThrow(()-> new ResourceNotFoundException(id));
+        return mapper.toResponse(merchant);
+    }
     public MerchantResponse insert (MerchantRequest request){
         Merchant merchant = mapper.toEntity(request);
         repository.save(merchant);
