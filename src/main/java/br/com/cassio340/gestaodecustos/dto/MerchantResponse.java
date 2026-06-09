@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
+
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -14,5 +14,5 @@ import java.util.List;
 public class MerchantResponse {
     private Long id;
     private String name;
-    private List<ExpenseResponse> expenses;
+
 }

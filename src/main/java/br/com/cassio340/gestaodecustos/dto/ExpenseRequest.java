@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
-import java.util.Calendar;
+
 
 
 @NoArgsConstructor
@@ -18,6 +18,7 @@ public class ExpenseRequest {
     private String name;
     private BigDecimal amount;
     private Category category;
+    private Long merchantId;
     private Long userId;
 
 

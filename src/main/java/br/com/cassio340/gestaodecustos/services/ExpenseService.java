@@ -28,7 +28,7 @@ public class ExpenseService {
     private final ExpenseMapper mapper;
     public List<ExpenseResponse> findAll (){
 
-        return repository.findAll().stream().map(mapper::toResponse).toList();
+        return repository.findAll().stream().map(e -> mapper.toResponse(e)).toList();
     }
 
 

@@ -13,10 +13,11 @@ import static java.util.stream.Collectors.toList;
 @Component
 @RequiredArgsConstructor
 public class MerchantMapper {
-    private final ExpenseMapper expenseMapper;
+
     public MerchantResponse toResponse (Merchant merchant){
-        List<ExpenseResponse> list = merchant.getExpenses().
-                stream().map(e -> expenseMapper.toResponse(e)).toList();
-        return new MerchantResponse(merchant.getId(), merchant.getName(),list);
+        if (merchant == null) {
+            return null;
+        }
+        return new MerchantResponse(merchant.getId(), merchant.getName());
     }
 }

@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,7 +20,7 @@ public class ExpenseResponse {
     private String name;
     private BigDecimal amount;
     private Category category;
-
+    private MerchantResponse merchant;
 
 
 
