@@ -12,7 +12,6 @@ import br.com.cassio340.gestaodecustos.respositories.ExpenseRepository;
 import br.com.cassio340.gestaodecustos.respositories.MerchantRepository;
 import br.com.cassio340.gestaodecustos.respositories.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -1,6 +1,5 @@
 package br.com.cassio340.gestaodecustos.dto;
 
-import br.com.cassio340.gestaodecustos.entities.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

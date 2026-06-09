@@ -2,8 +2,6 @@ package br.com.cassio340.gestaodecustos.mapper;
 
 import br.com.cassio340.gestaodecustos.dto.ExpenseRequest;
 import br.com.cassio340.gestaodecustos.dto.ExpenseResponse;
-import br.com.cassio340.gestaodecustos.dto.MerchantRequest;
-import br.com.cassio340.gestaodecustos.dto.UserRequest;
 import br.com.cassio340.gestaodecustos.entities.Expense;
 import br.com.cassio340.gestaodecustos.entities.Merchant;
 import br.com.cassio340.gestaodecustos.entities.User;

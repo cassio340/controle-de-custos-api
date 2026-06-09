@@ -8,8 +8,6 @@ import br.com.cassio340.gestaodecustos.exceptions.custom.ResourceNotFoundExcepti
 import br.com.cassio340.gestaodecustos.mapper.MerchantMapper;
 import br.com.cassio340.gestaodecustos.respositories.MerchantRepository;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.TransientPropertyValueException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.stereotype.Service;

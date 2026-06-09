@@ -26,6 +26,8 @@ public class Expense implements Serializable {
 
     private String name;
     private BigDecimal amount;
+
+    @Enumerated(EnumType.STRING)
     private Category category;
 
     @OneToOne

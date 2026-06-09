@@ -2,10 +2,8 @@ package br.com.cassio340.gestaodecustos.controllers;
 
 import br.com.cassio340.gestaodecustos.dto.UserRequest;
 import br.com.cassio340.gestaodecustos.dto.UserResponse;
-import br.com.cassio340.gestaodecustos.entities.User;
 import br.com.cassio340.gestaodecustos.services.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
