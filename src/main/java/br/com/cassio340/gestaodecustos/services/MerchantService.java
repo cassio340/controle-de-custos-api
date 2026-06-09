@@ -6,7 +6,7 @@ import br.com.cassio340.gestaodecustos.entities.Merchant;
 import br.com.cassio340.gestaodecustos.exceptions.custom.DataBaseException;
 import br.com.cassio340.gestaodecustos.exceptions.custom.ResourceNotFoundException;
 import br.com.cassio340.gestaodecustos.mapper.MerchantMapper;
-import br.com.cassio340.gestaodecustos.respositories.MerchantRepository;
+import br.com.cassio340.gestaodecustos.repositories.MerchantRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.InvalidDataAccessApiUsageException;

@@ -1,15 +1,13 @@
 package br.com.cassio340.gestaodecustos.mapper;
 
-import br.com.cassio340.gestaodecustos.dto.ExpenseResponse;
+
 import br.com.cassio340.gestaodecustos.dto.MerchantRequest;
 import br.com.cassio340.gestaodecustos.dto.MerchantResponse;
 import br.com.cassio340.gestaodecustos.entities.Merchant;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
 
-import static java.util.stream.Collectors.toList;
 
 @Component
 @RequiredArgsConstructor

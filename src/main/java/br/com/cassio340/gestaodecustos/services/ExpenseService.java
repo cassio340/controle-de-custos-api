@@ -8,9 +8,9 @@ import br.com.cassio340.gestaodecustos.exceptions.custom.ResourceNotFoundExcepti
 import br.com.cassio340.gestaodecustos.mapper.ExpenseMapper;
 import br.com.cassio340.gestaodecustos.entities.Expense;
 import br.com.cassio340.gestaodecustos.entities.User;
-import br.com.cassio340.gestaodecustos.respositories.ExpenseRepository;
-import br.com.cassio340.gestaodecustos.respositories.MerchantRepository;
-import br.com.cassio340.gestaodecustos.respositories.UserRepository;
+import br.com.cassio340.gestaodecustos.repositories.ExpenseRepository;
+import br.com.cassio340.gestaodecustos.repositories.MerchantRepository;
+import br.com.cassio340.gestaodecustos.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -35,10 +35,14 @@ public class ExpenseService {
 
 
     public ExpenseResponse insert (ExpenseRequest expenseRequest){
-        User user = userRepository.findById(expenseRequest.getUserId()).get();
-        Merchant merchant = merchantRepository.findById(expenseRequest.getMerchantId()).get();
+        User user = userRepository.findById(expenseRequest.getUserId()).orElseThrow(
+                ()-> new ResourceNotFoundException(expenseRequest.getUserId()));
+
+        Merchant merchant = merchantRepository.findById(expenseRequest.getMerchantId()).orElseThrow(
+                () -> new ResourceNotFoundException (expenseRequest.getMerchantId()));
 
         Expense expense = mapper.toEntity(expenseRequest,user,merchant);
+
         repository.save(expense);
         return mapper.toResponse(expense);
     }

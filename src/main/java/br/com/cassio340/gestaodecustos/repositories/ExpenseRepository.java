@@ -1,4 +1,4 @@
-package br.com.cassio340.gestaodecustos.respositories;
+package br.com.cassio340.gestaodecustos.repositories;
 
 
 

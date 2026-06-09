@@ -6,7 +6,7 @@ import br.com.cassio340.gestaodecustos.exceptions.custom.DataBaseException;
 import br.com.cassio340.gestaodecustos.exceptions.custom.ResourceNotFoundException;
 import br.com.cassio340.gestaodecustos.mapper.UserMapper;
 import br.com.cassio340.gestaodecustos.entities.User;
-import br.com.cassio340.gestaodecustos.respositories.UserRepository;
+import br.com.cassio340.gestaodecustos.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
