@@ -31,4 +31,11 @@ public class MerchantController {
 
         return ResponseEntity.created(uri).body(response);
     }
+
+    @PutMapping ("/{id}")
+    public ResponseEntity<MerchantResponse> update (@PathVariable Long id, @RequestBody MerchantRequest request){
+        MerchantResponse response = service.update(id,request);
+        return ResponseEntity.ok().body(response);
+    }
+
 }

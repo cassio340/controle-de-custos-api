@@ -24,4 +24,7 @@ public class MerchantMapper {
     public Merchant toEntity (MerchantRequest request){
         return new Merchant(null,request.getName(),null);
     }
+    public void update (Merchant merchant, MerchantRequest request){
+        merchant.setName(request.getName());
+    }
 }
