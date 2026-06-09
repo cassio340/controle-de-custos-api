@@ -1,6 +1,7 @@
 package br.com.cassio340.gestaodecustos.mapper;
 
 import br.com.cassio340.gestaodecustos.dto.ExpenseResponse;
+import br.com.cassio340.gestaodecustos.dto.MerchantRequest;
 import br.com.cassio340.gestaodecustos.dto.MerchantResponse;
 import br.com.cassio340.gestaodecustos.entities.Merchant;
 import lombok.RequiredArgsConstructor;
@@ -19,5 +20,8 @@ public class MerchantMapper {
             return null;
         }
         return new MerchantResponse(merchant.getId(), merchant.getName());
+    }
+    public Merchant toEntity (MerchantRequest request){
+        return new Merchant(null,request.getName(),null);
     }
 }

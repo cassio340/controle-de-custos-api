@@ -28,7 +28,7 @@ public class Expense implements Serializable {
     private BigDecimal amount;
     private Category category;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "merchant_id")
     private Merchant merchant;
 
@@ -36,11 +36,12 @@ public class Expense implements Serializable {
     @JoinColumn (name = "user_id")
     private User user;
 
-    public Expense(String name, BigDecimal amount, Category category, User user) {
+    public Expense(String name, BigDecimal amount, Category category, User user,Merchant merchant) {
         this.name = name;
         this.amount = amount;
         this.category = category;
         this.user = user;
+        this.merchant = merchant;
 
     }
 

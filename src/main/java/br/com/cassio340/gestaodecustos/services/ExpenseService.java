@@ -3,11 +3,13 @@ package br.com.cassio340.gestaodecustos.services;
 import br.com.cassio340.gestaodecustos.dto.ExpenseRequest;
 import br.com.cassio340.gestaodecustos.dto.ExpenseResponse;
 
+import br.com.cassio340.gestaodecustos.entities.Merchant;
 import br.com.cassio340.gestaodecustos.exceptions.custom.ResourceNotFoundException;
 import br.com.cassio340.gestaodecustos.mapper.ExpenseMapper;
 import br.com.cassio340.gestaodecustos.entities.Expense;
 import br.com.cassio340.gestaodecustos.entities.User;
 import br.com.cassio340.gestaodecustos.respositories.ExpenseRepository;
+import br.com.cassio340.gestaodecustos.respositories.MerchantRepository;
 import br.com.cassio340.gestaodecustos.respositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,7 @@ public class ExpenseService {
 
     private final UserRepository userRepository;
 
+    private final MerchantRepository merchantRepository;
 
     private final ExpenseMapper mapper;
     public List<ExpenseResponse> findAll (){
@@ -34,8 +37,9 @@ public class ExpenseService {
 
     public ExpenseResponse insert (ExpenseRequest expenseRequest){
         User user = userRepository.findById(expenseRequest.getUserId()).get();
+        Merchant merchant = merchantRepository.findById(expenseRequest.getMerchantId()).get();
 
-        Expense expense = mapper.toEntity(expenseRequest,user);
+        Expense expense = mapper.toEntity(expenseRequest,user,merchant);
         repository.save(expense);
         return mapper.toResponse(expense);
     }

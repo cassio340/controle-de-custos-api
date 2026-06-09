@@ -2,6 +2,7 @@ package br.com.cassio340.gestaodecustos.mapper;
 
 import br.com.cassio340.gestaodecustos.dto.ExpenseRequest;
 import br.com.cassio340.gestaodecustos.dto.ExpenseResponse;
+import br.com.cassio340.gestaodecustos.dto.MerchantRequest;
 import br.com.cassio340.gestaodecustos.dto.UserRequest;
 import br.com.cassio340.gestaodecustos.entities.Expense;
 import br.com.cassio340.gestaodecustos.entities.Merchant;
@@ -17,9 +18,9 @@ public class ExpenseMapper {
         return  new ExpenseResponse(expense.getId(), expense.getName(), expense.getAmount(),expense.getCategory(),merchantMapper.toResponse(expense.getMerchant()));
     }
 
-    public Expense toEntity(ExpenseRequest expenseRequest, User user){
+    public Expense toEntity(ExpenseRequest expenseRequest, User user,Merchant merchant){
         return new Expense( expenseRequest.getName(),
-                expenseRequest.getAmount(), expenseRequest.getCategory(), user);
+                expenseRequest.getAmount(), expenseRequest.getCategory(), user, merchant);
     }
 
     public void updateExpense (Expense expense,ExpenseRequest expenseRequest){

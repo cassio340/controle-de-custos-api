@@ -1,6 +1,8 @@
 package br.com.cassio340.gestaodecustos.services;
 
+import br.com.cassio340.gestaodecustos.dto.MerchantRequest;
 import br.com.cassio340.gestaodecustos.dto.MerchantResponse;
+import br.com.cassio340.gestaodecustos.entities.Merchant;
 import br.com.cassio340.gestaodecustos.mapper.MerchantMapper;
 import br.com.cassio340.gestaodecustos.respositories.MerchantRepository;
 import lombok.RequiredArgsConstructor;
@@ -20,5 +22,11 @@ public class MerchantService {
 
     public List<MerchantResponse> findAll (){
         return repository.findAll().stream().map(e->mapper.toResponse(e)).toList();
+    }
+
+    public MerchantResponse insert (MerchantRequest request){
+        Merchant merchant = mapper.toEntity(request);
+        repository.save(merchant);
+        return mapper.toResponse(merchant);
     }
 }
