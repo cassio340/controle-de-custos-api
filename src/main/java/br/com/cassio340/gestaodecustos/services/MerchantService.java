@@ -3,11 +3,15 @@ package br.com.cassio340.gestaodecustos.services;
 import br.com.cassio340.gestaodecustos.dto.MerchantRequest;
 import br.com.cassio340.gestaodecustos.dto.MerchantResponse;
 import br.com.cassio340.gestaodecustos.entities.Merchant;
+import br.com.cassio340.gestaodecustos.exceptions.custom.DataBaseException;
 import br.com.cassio340.gestaodecustos.exceptions.custom.ResourceNotFoundException;
 import br.com.cassio340.gestaodecustos.mapper.MerchantMapper;
 import br.com.cassio340.gestaodecustos.respositories.MerchantRepository;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.TransientPropertyValueException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -35,5 +39,18 @@ public class MerchantService {
         mapper.update(merchant,request);
         repository.save(merchant);
         return mapper.toResponse(merchant);
+    }
+    public void delete (Long id){
+        repository.findById(id).orElseThrow(()-> new ResourceNotFoundException(id));
+        try {
+            repository.deleteById(id);
+            repository.flush();
+        }
+        catch (DataIntegrityViolationException e) {
+            throw new DataBaseException("Cannot delete user because it has related expenses");
+        }
+        catch (InvalidDataAccessApiUsageException e) {
+            throw new DataBaseException("Cannot delete user because it has related expenses");
+        }
     }
 }

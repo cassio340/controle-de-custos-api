@@ -37,5 +37,10 @@ public class MerchantController {
         MerchantResponse response = service.update(id,request);
         return ResponseEntity.ok().body(response);
     }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete (@PathVariable Long id){
+        service.delete(id);
+        return ResponseEntity.noContent().build();
+    }
 
 }
