@@ -27,6 +27,11 @@ public class Expense implements Serializable {
     private String name;
     private BigDecimal amount;
     private Category category;
+
+    @ManyToOne
+    @JoinColumn(name = "merchant_id")
+    private Merchant merchant;
+
     @ManyToOne
     @JoinColumn (name = "user_id")
     private User user;
