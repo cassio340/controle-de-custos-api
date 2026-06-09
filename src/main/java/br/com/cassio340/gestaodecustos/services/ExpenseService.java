@@ -9,21 +9,23 @@ import br.com.cassio340.gestaodecustos.entities.Expense;
 import br.com.cassio340.gestaodecustos.entities.User;
 import br.com.cassio340.gestaodecustos.respositories.ExpenseRepository;
 import br.com.cassio340.gestaodecustos.respositories.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class ExpenseService {
-    @Autowired
-    private ExpenseRepository repository;
 
-    @Autowired
-    private UserRepository userRepository;
+    private final ExpenseRepository repository;
 
-    @Autowired
-    private ExpenseMapper mapper;
+
+    private final UserRepository userRepository;
+
+
+    private final ExpenseMapper mapper;
     public List<ExpenseResponse> findAll (){
 
         return repository.findAll().stream().map(mapper::toResponse).toList();

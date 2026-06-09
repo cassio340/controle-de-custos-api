@@ -7,6 +7,7 @@ import br.com.cassio340.gestaodecustos.exceptions.custom.ResourceNotFoundExcepti
 import br.com.cassio340.gestaodecustos.mapper.UserMapper;
 import br.com.cassio340.gestaodecustos.entities.User;
 import br.com.cassio340.gestaodecustos.respositories.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
@@ -15,12 +16,13 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class UserService {
-    @Autowired
-    private UserRepository repository;
 
-    @Autowired
-    private UserMapper mapper;
+    private final UserRepository repository;
+
+
+    private final UserMapper mapper;
 
     public List<UserResponse> findAll () {
 
