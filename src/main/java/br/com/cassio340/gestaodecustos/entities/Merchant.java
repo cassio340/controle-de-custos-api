@@ -24,7 +24,7 @@ public class Merchant implements Serializable {
     private Long id;
     private String name;
 
-    @OneToMany(mappedBy = "expense")
+    @OneToMany(mappedBy = "merchant")
     private List <Expense> expenses;
 
     @Override
