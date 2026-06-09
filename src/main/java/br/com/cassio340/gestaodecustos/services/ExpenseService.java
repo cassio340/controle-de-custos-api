@@ -47,9 +47,15 @@ public class ExpenseService {
         return mapper.toResponse(expense);
     }
     public ExpenseResponse update (Long id, ExpenseRequest expenseRequest){
+        User user = userRepository.findById(expenseRequest.getUserId()).orElseThrow(
+                ()-> new ResourceNotFoundException(expenseRequest.getUserId()));
+
+        Merchant merchant = merchantRepository.findById(expenseRequest.getMerchantId()).orElseThrow(
+                () -> new ResourceNotFoundException (expenseRequest.getMerchantId()));
+
         Expense expense = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id));
 
-        mapper.updateExpense(expense,expenseRequest);
+        mapper.updateExpense(expense,expenseRequest,user,merchant);
         repository.save(expense);
         return mapper.toResponse(expense);
     }

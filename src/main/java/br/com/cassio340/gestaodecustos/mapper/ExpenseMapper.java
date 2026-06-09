@@ -21,10 +21,12 @@ public class ExpenseMapper {
                 expenseRequest.getAmount(), expenseRequest.getCategory(), user, merchant);
     }
 
-    public void updateExpense (Expense expense,ExpenseRequest expenseRequest){
+    public void updateExpense (Expense expense,ExpenseRequest expenseRequest,User user, Merchant merchant){
         expense.setName(expenseRequest.getName());
         expense.setAmount(expenseRequest.getAmount());
         expense.setCategory(expenseRequest.getCategory());
+        expense.setUser(user);
+        expense.setMerchant(merchant);
 
 
     }
