@@ -33,7 +33,7 @@ public class ResourceExceptionHandler {
     public ResponseEntity<StandardError> methodArgumentTypeMismatch (MethodArgumentTypeMismatchException e ,
                                                                      HttpServletRequest request){
         String err = "Bad Request";
-        String message = "Invalid parameter +" + e.getName();
+        String message = "Invalid parameter " + e.getName();
         HttpStatus status = HttpStatus.BAD_REQUEST;
 
         StandardError standardError = new StandardError(Instant.now(),status.value(),
