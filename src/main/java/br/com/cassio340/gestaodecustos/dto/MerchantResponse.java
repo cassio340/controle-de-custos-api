@@ -12,6 +12,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class MerchantResponse {
+
     private Long id;
     private String name;
 

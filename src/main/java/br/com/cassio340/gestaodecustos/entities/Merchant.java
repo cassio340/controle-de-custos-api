@@ -5,9 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import java.io.Serializable;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -21,9 +19,11 @@ import java.util.Objects;
 
 public class Merchant implements Serializable {
     private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
 
     @OneToMany(mappedBy = "merchant")
@@ -41,4 +41,5 @@ public class Merchant implements Serializable {
     public int hashCode() {
         return Objects.hashCode(id);
     }
+
 }

@@ -7,7 +7,6 @@ public class BadRequestException extends RuntimeException implements Serializabl
     private static final long  serialVersionUID = 1L;
 
     public BadRequestException(String message) {
-
         super(message);
     }
 }

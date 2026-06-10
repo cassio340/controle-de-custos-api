@@ -23,25 +23,27 @@ public class ExpenseService {
 
     private final ExpenseRepository repository;
 
-
     private final UserRepository userRepository;
 
     private final MerchantRepository merchantRepository;
 
     private final ExpenseMapper mapper;
-    public List<ExpenseResponse> findAll (){
 
+    public List<ExpenseResponse> findAll (){
         return repository.findAll().stream().map(e -> mapper.toResponse(e)).toList();
     }
 
 
     public ExpenseResponse insert (ExpenseRequest expenseRequest){
+        // Checks if the required ID fields were provided in the request.
+        // If the field is missing or null, a BadRequestException is thrown before querying the database.
         if (expenseRequest.getUserId() == null){
             throw new BadRequestException("userId is required");
         }
         if (expenseRequest.getMerchantId() == null){
             throw new BadRequestException("merchantId is required");
         }
+
         User user = userRepository.findById(expenseRequest.getUserId()).orElseThrow(
                 ()-> new ResourceNotFoundException(expenseRequest.getUserId()));
 
@@ -56,7 +58,9 @@ public class ExpenseService {
 
         return mapper.toResponse(expense);
     }
+
     public ExpenseResponse update (Long id, ExpenseRequest expenseRequest){
+
         User user = userRepository.findById(expenseRequest.getUserId()).orElseThrow(
                 ()-> new ResourceNotFoundException(expenseRequest.getUserId()));
 
@@ -69,6 +73,7 @@ public class ExpenseService {
         repository.save(expense);
         return mapper.toResponse(expense);
     }
+
     public void delete (Long id){
         repository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id));
         repository.deleteById(id);
