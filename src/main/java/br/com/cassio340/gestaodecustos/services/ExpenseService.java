@@ -14,6 +14,7 @@ import br.com.cassio340.gestaodecustos.repositories.MerchantRepository;
 import br.com.cassio340.gestaodecustos.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -29,11 +30,12 @@ public class ExpenseService {
 
     private final ExpenseMapper mapper;
 
+    @Transactional(readOnly = true)
     public List<ExpenseResponse> findAll (){
         return repository.findAll().stream().map(e -> mapper.toResponse(e)).toList();
     }
 
-
+    @Transactional
     public ExpenseResponse insert (ExpenseRequest expenseRequest){
         // Checks if the required ID fields were provided in the request.
         // If the field is missing or null, a BadRequestException is thrown before querying the database.
@@ -59,6 +61,7 @@ public class ExpenseService {
         return mapper.toResponse(expense);
     }
 
+    @Transactional
     public ExpenseResponse update (Long id, ExpenseRequest expenseRequest){
 
         User user = userRepository.findById(expenseRequest.getUserId()).orElseThrow(
@@ -74,6 +77,7 @@ public class ExpenseService {
         return mapper.toResponse(expense);
     }
 
+    @Transactional
     public void delete (Long id){
         repository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id));
         repository.deleteById(id);

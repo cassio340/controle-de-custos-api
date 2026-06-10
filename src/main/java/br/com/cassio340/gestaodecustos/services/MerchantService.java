@@ -11,6 +11,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 
 @Service
@@ -21,15 +23,18 @@ public class MerchantService {
 
     private final MerchantMapper mapper;
 
+    @Transactional(readOnly = true)
     public List<MerchantResponse> findAll (){
         return repository.findAll().stream().map(e->mapper.toResponse(e)).toList();
     }
 
+    @Transactional(readOnly = true)
     public MerchantResponse findById (Long id){
         Merchant merchant = repository.findById(id).orElseThrow(()-> new ResourceNotFoundException(id));
         return mapper.toResponse(merchant);
     }
 
+    @Transactional
     public MerchantResponse insert (MerchantRequest request){
         Merchant merchant = mapper.toEntity(request);
 
@@ -37,6 +42,7 @@ public class MerchantService {
         return mapper.toResponse(merchant);
     }
 
+    @Transactional
     public MerchantResponse update (Long id, MerchantRequest request){
         Merchant merchant = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id));
 
@@ -46,6 +52,7 @@ public class MerchantService {
         return mapper.toResponse(merchant);
     }
 
+    @Transactional
     public void delete (Long id){
         repository.findById(id).orElseThrow(()-> new ResourceNotFoundException(id));
 
