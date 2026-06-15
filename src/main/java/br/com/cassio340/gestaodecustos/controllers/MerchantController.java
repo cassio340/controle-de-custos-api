@@ -6,6 +6,7 @@ import br.com.cassio340.gestaodecustos.services.MerchantService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +21,8 @@ public class MerchantController {
 
     private final MerchantService service;
 
+
+
     @Operation(description = "Find all merchants")
     @ApiResponse(responseCode = "200",description = "Merchants found successfully")
     @GetMapping
@@ -27,6 +30,7 @@ public class MerchantController {
         List<MerchantResponse> responses = service.findAll();
         return ResponseEntity.ok().body(responses);
     }
+
 
     @Operation(description = "Find merchant by ID")
     @ApiResponses(value = {
@@ -39,13 +43,14 @@ public class MerchantController {
         return ResponseEntity.ok().body(response);
     }
 
+
     @Operation(description = "Create a new merchant")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201",description = "Merchant created successfully"),
             @ApiResponse(responseCode = "400",description = "Invalid request data")
     })
     @PostMapping
-    public ResponseEntity<MerchantResponse> insert(@RequestBody MerchantRequest request){
+    public ResponseEntity<MerchantResponse> insert(@Valid @RequestBody MerchantRequest request){
         MerchantResponse response = service.insert(request);
 
         URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().
@@ -54,6 +59,7 @@ public class MerchantController {
         return ResponseEntity.created(uri).body(response);
     }
 
+
     @Operation(description = "Updates the data of an existing merchant")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200",description = "Merchant updated successfully"),
@@ -61,10 +67,11 @@ public class MerchantController {
             @ApiResponse(responseCode = "400", description = "Invalid request data")
     })
     @PutMapping ("/{id}")
-    public ResponseEntity<MerchantResponse> update (@PathVariable Long id, @RequestBody MerchantRequest request){
+    public ResponseEntity<MerchantResponse> update (@PathVariable Long id, @Valid @RequestBody MerchantRequest request){
         MerchantResponse response = service.update(id,request);
         return ResponseEntity.ok().body(response);
     }
+
 
     @Operation(description = "Deletes an existing merchant by ID")
     @ApiResponses(value = {

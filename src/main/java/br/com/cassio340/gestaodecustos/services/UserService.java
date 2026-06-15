@@ -8,6 +8,7 @@ import br.com.cassio340.gestaodecustos.mapper.UserMapper;
 import br.com.cassio340.gestaodecustos.entities.User;
 import br.com.cassio340.gestaodecustos.repositories.UserRepository;
 
+import jakarta.validation.constraints.Email;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
