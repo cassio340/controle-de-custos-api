@@ -6,17 +6,42 @@ API REST para gerenciamento de despesas pessoais e rurais, desenvolvida com Spri
 
 O **Gestão de Custos** é uma aplicação back-end que permite aos usuários registrar, categorizar e controlar suas despesas. Cada despesa pode ser associada a um usuário e a um estabelecimento (merchant), com suporte a categorias que abrangem desde gastos domésticos até despesas agrícolas e pecuárias.
 
+## ✨ Funcionalidades
+
+- Cadastro de usuários
+- Gerenciamento de despesas
+- Cadastro de estabelecimentos
+- Categorização de despesas
+- Tratamento de exceções personalizado
+- Documentação com Swagger/OpenAPI
+- Containerização com Docker
+- Deploy em produção no Render
+
 ## 🛠️ Tecnologias Utilizadas
 
 - **Java 21**
 - **Spring Boot 4.0.6**
-    - Spring Web MVC
-    - Spring Data JPA
-    - Spring Validation
-    - Spring DevTools
+  - Spring Web MVC
+  - Spring Data JPA
+  - Spring Validation
+  - Spring DevTools
 - **PostgreSQL**
 - **Lombok**
 - **Maven**
+
+## 🚀 Deploy
+
+A aplicação está disponível em produção.
+
+**API**
+
+https://controle-custos-api.onrender.com
+
+**Swagger**
+
+https://controle-custos-api.onrender.com/swagger-ui/index.html
+
+> ⚠️ **Observação:** Esta é a versão atual do projeto. A autenticação e autorização com Spring Security e JWT ainda estão em desenvolvimento. Portanto, os endpoints ainda não possuem proteção por autenticação.
 
 ## 📁 Estrutura do Projeto
 
@@ -105,6 +130,18 @@ cd gestao-de-custos
 ```
 
 A API ficará disponível em `http://localhost:8080`.
+
+## 🐳 Executando com Docker
+
+```bash
+docker pull cassio340/controle-custos-api:1.0
+
+docker run -p 8080:8080 \
+-e SPRING_DATASOURCE_URL=jdbc:postgresql://<HOST>:5432/<DATABASE> \
+-e SPRING_DATASOURCE_USERNAME=<USUARIO> \
+-e SPRING_DATASOURCE_PASSWORD=<SENHA> \
+cassio340/controle-custos-api:1.0
+```
 
 ## 🔗 Endpoints
 
